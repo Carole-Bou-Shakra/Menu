@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Menu</title>
+</head>
+<body>
+
+    <div class="meneu">
+        <button id="plus-drinks" onclick="showForm()">+</button>  
+        <div class="Drinks">
+            <h2>Drinks</h2>
+            <ul id="drinks-list" class="lists-drink"> 
+                <li class="coffe" onclick="showForm(101)">
+                    <img id="101" src="coffe.jpg" alt="Coffee">
+                    <span class="item-name">Coffee</span>
+                    <span class="item-price">$3.00</span>
+                </li> 
+                <li class="mocha" onclick="showForm(102)">
+                    <img id="102" src="mocha.jpeg" alt="Mocha">
+                    <span class="item-name">Mocha</span>
+                    <span class="item-price">$4.50</span>
+                </li> 
+                <li class="latte" onclick="showForm(103)">
+                    <img id="103" src="lattee.jpeg" alt="Latte">
+                    <span class="item-name">Latte</span>
+                    <span class="item-price">$4.00</span>
+                </li>  
+            </ul>  
+        </div> 
+        <button id="plus-sandwich" onclick="showForm()">+</button>  
+        <div class="Sandwiches">
+            <h2>Sandwiches</h2>
+            <ul id="sandwiches-list" class="lists-sandwiches"> 
+                <li class="beef-sandwich" onclick="showForm(104)">
+                    <img id="104" src="beefsandwich.jpeg" alt="Beef Sandwich">
+                    <span class="item-name">Beef Sandwich</span>
+                    <span class="item-price">$6.50</span>
+                </li> 
+                <li class="cheese-sandwich" onclick="showForm(105)">
+                    <img id="105" src="cheesesandwich.jpeg" alt="Cheese Sandwich">
+                    <span class="item-name">Cheese Sandwich</span>
+                    <span class="item-price">$5.00</span>  
+                </li>
+                <li class="taco-sandwich" onclick="showForm(106)">
+                    <img id="106" src="taco.jpg" alt="Taco Sandwich">
+                    <span class="item-name">Taco Sandwich</span>
+                    <span class="item-price">$10.00</span>  
+                </li> 
+            </ul> 
+        </div> 
+    </div>
+
+    <!-- Updated Cart -->
+    <div class="carts display-none" id="cart">
+        <div class="item">
+            <h2>Add Item</h2>
+            <button id="close" onclick="closeForm()">Close</button> 
+        </div>
+        <div class="categories">
+            <div class="image">
+                <label for="category">Category:</label>
+                <select id="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Drink">Drink</option>
+                    <option value="Sandwich">Sandwich</option>
+                </select>
+                <p class="error-message" id="errorMessage" style="display:none">Please select a category.</p> 
+                <label for="add-image">Add Image:</label>
+                <input type="file" id="add-image" accept="image/*" required>
+            </div>
+            <div class="price">
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" placeholder="Item Name" required>
+                <label for="item-price">Item Price:</label>
+                <input type="text" id="item-price" placeholder="Item Price" required>
+            </div>
+            <div class="details">
+                <label for="item-details">Item Details:</label>
+                <input type="text" id="item-details" placeholder="Item Details">
+            </div>
+        </div>
+        
+        <div class="button">
+            <button id="press" onclick="addItem()">Add Item</button>
+        </div>
+    </div>
+
+    <script>
+        let drinkli = [
+            { id: 101, name: "Coffee", img: "coffe.jpg", price: 3.00 },
+            { id: 102, name: "Mocha", img: "mocha.jpeg", price: 4.50 },
+            { id: 103, name: "Latte", img: "lattee.jpeg", price: 4.00 }
+        ];
+
+        let Sandwichesli = [
+            { id: 104, name: "Beef Sandwich", img: "beefsandwich.jpeg", price: 6.50 },
+            { id: 105, name: "Cheese Sandwich", img: "cheesesandwich.jpeg", price: 5.00 },
+            { id: 106, name: "Taco Sandwich", img: "taco.jpg", price: 10.00 }
+        ];
+
+        // Function to show the Add Item form
+        function showForm() {
+            let cart = document.getElementById('cart');
+            cart.classList.remove('display-none'); // Show form by removing the 'display-none' class
+
+            // Clear form fields
+            document.getElementById('item-name').value = '';
+            document.getElementById('item-price').value = '';
+            document.getElementById('item-details').value = '';
+            document.getElementById('category').value = ''; // Reset category
+            document.getElementById('add-image').value = ''; // Reset image input
+        }
+
+        // Function to close the Add Item form
+        function closeForm() {
+            let cart = document.getElementById('cart');
+            cart.classList.add('display-none'); // Hide form by adding the 'display-none' class
+        }
+
+        // Function to add item to the menu
+        function addItem() {
+            const itemName = document.getElementById('item-name').value;
+            const itemPrice = document.getElementById('item-price').value;
+            const itemDetails = document.getElementById('item-details').value;
+            const addImage = document.getElementById('add-image').files[0]; // Get the selected file
+            const selectedCategory = document.getElementById('category').value;
+
+            // Get the error message element
+            const errorMessageElement = document.getElementById('errorMessage');
+
+            // Hide the error message initially
+            errorMessageElement.style.display = 'none'; 
+
+            // Check if the form is filled correctly
+            if (itemName && itemPrice && selectedCategory && addImage) {
+                // Create a new list item
+                const newItem = document.createElement('li');
+
+                // Create an image element
+                const imgElement = document.createElement('img');
+                imgElement.src = URL.createObjectURL(addImage); // Create a URL for the image
+                imgElement.alt = itemName; // Set alt text for the image
+                imgElement.style.width = '50px'; // Set a width for the image, adjust as needed
+                imgElement.style.height = 'auto'; // Maintain aspect ratio
+
+                // Create span elements for name and price
+                const itemNameElement = document.createElement('span');
+                itemNameElement.className = 'item-name';
+                itemNameElement.textContent = itemName;
+
+                const itemPriceElement = document.createElement('span');
+                itemPriceElement.className = 'item-price';
+                itemPriceElement.textContent = `$${itemPrice}`;
+
+                // Set the content of the list item
+                newItem.appendChild(imgElement); // Add image to the front of the item
+                newItem.appendChild(itemNameElement); // Add item name
+                newItem.appendChild(itemPriceElement); // Add item price
+
+                // Append to the respective category list
+                if (selectedCategory === 'Drink') {
+                    document.getElementById('drinks-list').appendChild(newItem); // Use correct ID
+                } else if (selectedCategory === 'Sandwich') {
+                    document.getElementById('sandwiches-list').appendChild(newItem); // Use correct ID
+                }
+
+                // Close the form after adding
+                closeForm();
+            } else {
+                // Display error message if the category is not selected
+                if (!selectedCategory) {
+                    errorMessageElement.style.display = 'block'; // Show error if category is not selected
+                    errorMessageElement.textContent = "Please select a category."; // Specific error message for category
+                } else {
+                    // Hide the error message if the category is selected
+                    errorMessageElement.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body> 
+</html>

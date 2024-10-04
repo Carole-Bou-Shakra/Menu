@@ -1,0 +1,273 @@
+/* General styles for the main container */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply to the body to center the menu */
+body {
+    display: flex;                  /* Use flexbox for centering */
+    justify-content: center;        /* Center horizontally */
+    align-items: center;            /* Center vertically */
+    min-height: 100vh;             /* Ensure full viewport height */
+    background-image: url(background.jpg);
+    /* background-position: center; */
+    background-size: cover;
+}
+
+/* Styling the menu container */
+.meneu {
+    display: flex;
+    flex-direction: row;           /* Drinks and Sandwiches side by side */
+    justify-content: space-between;
+    width: 100%;                  /* Adjust width to control the total size */
+    padding: 25px;
+    border-radius: 8px;
+    background-color: transparent;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Styling for the buttons */
+/* Styling for the add buttons beside each category */
+button#plus-drinks, 
+button#plus-sandwich {
+    height: 30px; /* Set a smaller height for the buttons */
+    width: 30px; /* Set a smaller width for the buttons */
+    padding: 0; /* Remove padding for a more compact button */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%; /* Make buttons circular */
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px; /* Add margin to the left for spacing */
+    display: inline-flex; /* Align buttons in a line */
+    justify-content: center; /* Center the "+" symbol */
+    align-items: center; /* Center the "+" symbol */
+}
+
+/* Change hover effect for the buttons */
+button#plus-drinks:hover, 
+button#plus-sandwich:hover {
+    background-color: #45a049;
+}
+
+
+/* Section header styling */
+h2 {
+    font-family: 'Times New Roman', sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    color:rgb(11, 67, 11);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Styling for the lists of drinks and sandwiches */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+/* Styling for each list item */
+ul li {
+    display: flex;
+    flex-direction: column; /* Stack image, name, and price vertically */
+    align-items: center;
+    padding: 8px;
+    font-size: 18px;
+    color: #555;
+    background-color: #d8c29f;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+ul li:hover {
+    background-color:#bd733d;
+}
+
+/* Image styling inside the list items */
+ul li img {
+    width: 80px; /* Slightly bigger image for better visibility */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Styling for the item name and price to center under the image */
+.item-name {
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.item-price {
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Individual category styling for drinks and sandwiches */
+.Drinks,
+.Sandwiches {
+    width: 48%; /* Adjust width of each section */
+}
+
+/* General styling for the form container */
+.carts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute; 
+    align-items: center;
+    width: 500px; /* Adjust the width as needed */
+    margin: 20px auto;
+    padding: 20px;
+   background-color: #af783d;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the header inside the form */
+.carts .item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.carts h2 {
+    font-size: 22px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+.item{
+    background-color:#af783d; 
+}
+.image{
+    background-color: #af783d; 
+}
+.price{
+    background-color: #af783d; 
+}
+.details{
+    background-color:#af783d ;
+}
+/* Close button styling */
+#close {
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#close:hover {
+    background-color: #e60000;
+}
+
+
+/* Styling for the categories (inputs section) */
+.categories {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #af783d ;
+    
+}
+
+.image, .price, .details {
+    margin-bottom: 15px; /* Space between each section */
+    background-color: #af783d; 
+}
+
+/* Styling for input fields and labels */
+.categories label {
+    font-weight: bold; /* Make labels bold */
+    margin-bottom: 5px; /* Space between label and input */
+    display: block; /* Make labels take full width */
+    background-color:#af783d;
+
+}
+
+/* Styling for input fields and select dropdown */
+.categories input,
+.categories select {
+    width: 100%; /* Full width of the container */
+    padding: 10px;
+    background-color: #af783d;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+/* Placeholder styling */
+.categories input::placeholder,
+.categories select::placeholder {
+    color: #999; /* Lighter color for placeholders */
+   
+}
+
+/* Focus state for inputs */
+.categories input:focus,
+.categories select:focus {
+    border-color: #4CAF50; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+    background-color:#af783d;
+}
+
+/* Button styling */
+.button {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+
+#press {
+    background-color: #c08b4c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20 px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%; /* Full width for button */
+}
+
+#press:hover {
+    background-color: #79402f;
+}
+
+.display-none {
+    display: none;
+}
+.error-message{
+    color: red;
+}
+
+
+
+@media (max-width: 768px) {
+    li {
+        width: 100%; /* Make items wider on smaller screens */
+    }
+
+
+    .Drinks, .Sandwiches {
+        padding: 15px;
+    }
+
+    .carts {
+        padding: 15px;
+    }
+}
